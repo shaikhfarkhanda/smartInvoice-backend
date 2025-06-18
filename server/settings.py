@@ -58,11 +58,13 @@ import urllib.parse
 
 DATABASE_URL = os.environ.get('DATABASE_URL')
 
-if DATABASE_URL:
-    # For Render or production
+if DATABASE_URL and DATABASE_URL.startswith("postgresql://"):
+    DATABASE_URL = DATABASE_URL.replace("postgresql://", "postgres://", 1)
+
     DATABASES = {
         'default': dj_database_url.config(default=DATABASE_URL)
     }
+
 else:
     # For local MySQL
     DATABASES = {
