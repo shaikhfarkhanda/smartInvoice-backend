@@ -127,10 +127,3 @@ def send_invoice_email(request, pk):
 @permission_classes([IsAuthenticated])
 def login_status(request):
     return Response({"logged_in": True})
-
-
-from django.contrib.auth import get_user_model
-User = get_user_model()
-
-if not User.objects.filter(username='admin').exists():
-    User.objects.create_superuser('admin', 'admin@example.com', 'admin123')
