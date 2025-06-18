@@ -10,6 +10,9 @@ from django.template.loader import render_to_string
 from weasyprint import HTML
 from django.core.mail import EmailMessage
 import tempfile
+from django.http import JsonResponse
+from rest_framework.permissions import AllowAny
+from rest_framework_simplejwt.views import TokenObtainPairView
 
 class ClientViewSet(viewsets.ModelViewSet):
     queryset = Client.objects.all()
@@ -126,3 +129,13 @@ def send_invoice_email(request, pk):
 @permission_classes([IsAuthenticated])
 def login_status(request):
     return Response({"logged_in": True})
+
+
+@api_view(["POST"])
+@permission_classes([AllowAny])
+def debug_token_view(request):
+    try:
+        from rest_framework_simplejwt.views import TokenObtainPairView
+        return TokenObtainPairView.as_view()(request._request)
+    except Exception as e:
+        return JsonResponse({"error": str(e)}, status=500)
