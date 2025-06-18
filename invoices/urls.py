@@ -28,20 +28,3 @@ urlpatterns = [
     path("auth/token/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
     path("auth/status/", login_status),
 ]
-
-from django.contrib.auth import get_user_model
-
-User = get_user_model()
-
-def create_default_admin():
-    if not User.objects.filter(username='admin').exists():
-        print("Creating default admin user...")
-        User.objects.create_superuser(
-            username='admin',
-            email='admin@example.com',
-            password='admin123'
-        )
-    else:
-        print("Admin user already exists.")
-
-create_default_admin()
