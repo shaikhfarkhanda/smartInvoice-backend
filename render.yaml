@@ -20,3 +20,4 @@ services:
 databases:
   - name: smartinvoice-db
     plan: free
+# postgresql://smartuser:lvKNXvgkLsGvuZHVjnFwS3BQS3NSlReB@dpg-d19c2ljuibrs73c3eqd0-a/smartinvoice_db
