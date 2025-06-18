@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body { font-family: sans-serif; margin: 40px; }
+    h1 { color: #333; }
+    table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+    th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+    th { background: #f5f5f5; }
+  </style>
+</head>
+<body>
+  <h1>Invoice #{{ invoice.invoice_number }}</h1>
+  <p><strong>Client:</strong> {{ client.name }}<br/>
+     <strong>Email:</strong> {{ client.email }}</p>
+  <p><strong>Issue Date:</strong> {{ invoice.issue_date }}<br/>
+     <strong>Due Date:</strong> {{ invoice.due_date }}</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Description</th>
+        <th>Qty</th>
+        <th>Rate</th>
+        <th>Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in items %}
+        <tr>
+          <td>{{ item.description }}</td>
+          <td>{{ item.quantity }}</td>
+          <td>₹{{ item.rate }}</td>
+          <td>₹{% widthratio item.quantity 1 item.rate %}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% if invoice.notes %}
+    <p><strong>Notes:</strong> {{ invoice.notes }}</p>
+  {% endif %}
+
+ <h3 style="text-align:right;">Total: ₹{{ invoice.total_amount }}</h3>
+</body>
+</html>

@@ -1,0 +1,8 @@
+dj-database-url
+psycopg2-binary
+django
+djangorestframework
+mysqlclient
+gunicorn
+django-cors-headers
+djangorestframework-simplejwt
