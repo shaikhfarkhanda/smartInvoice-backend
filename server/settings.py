@@ -134,7 +134,7 @@ CORS_ALLOWED_ORIGINS = [
 
 CSRF_TRUSTED_ORIGINS = [
     "http://localhost:5173",
-    "https://yourdomain.com",
+    "https://smartinvoice-backend.onrender.com",
 ]
 
 # ✅ Security Headers
